@@ -11,6 +11,7 @@ function CurrentPageWidget({
   itemEdited,
   setItemEdited,
   editNote,
+  deleteNote,
 }) {
   switch (currentPage) {
     case "home":
@@ -19,6 +20,7 @@ function CurrentPageWidget({
           noteList={noteList}
           setCurrentPage={setCurrentPage}
           setItemEdited={setItemEdited}
+          deleteNote={deleteNote}
         />
       );
     case "add":
@@ -72,6 +74,13 @@ export default function App() {
 
     setNoteList(updatedNote);
   }
+  function deleteNote(id) {
+    const updatedNote = noteList.filter((note) => {
+      return note.id != id;
+    });
+
+    setNoteList(updatedNote);
+  }
   return (
     <CurrentPageWidget
       currentPage={currentPage}
@@ -81,6 +90,7 @@ export default function App() {
       setItemEdited={setItemEdited}
       itemEdited={itemEdited}
       editNote={editNote}
+      deleteNote={deleteNote}
     />
   );
 }
